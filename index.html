@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="बागलुङ्ग खाजा एण्ड बर्गर हाउसको पूर्ण मेनु — चिया, खाजा, खाना, मः मः, चाउमिन, बर्गर, थुक्पा र थप। मूल्यसहित।">
+<meta name="theme-color" content="#7a1414">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%94%3C/text%3E%3C/svg%3E">
+<title>बागलुङ्ग खाजा एण्ड बर्गर हाउस — Menu</title>
+<style>
+  :root{
+    --maroon:#7a1414;
+    --maroon-bright:#a01f1f;
+    --gold-1:#f3d98a;
+    --gold-2:#e8bf5e;
+    --ink:#3a2410;
+    --line:#c99a49;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Noto Sans Devanagari","FreeSans",sans-serif;
+    background:linear-gradient(160deg, var(--gold-1) 0%, var(--gold-2) 55%, #ecc568 100%);
+    color:var(--ink);
+    min-height:100vh;
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:20px 16px 60px;}
+
+  header{
+    background:linear-gradient(90deg, var(--maroon), var(--maroon-bright));
+    border-radius:10px;
+    text-align:center;
+    padding:22px 16px;
+    margin-bottom:8px;
+    box-shadow:0 4px 14px rgba(122,20,20,0.25);
+    animation:fadeInDown .7s ease;
+  }
+  header h1{
+    color:#fff;
+    margin:0;
+    font-size:clamp(20px, 4vw, 34px);
+    letter-spacing:0.5px;
+  }
+  header p{
+    color:#f3d9a8;
+    margin:6px 0 0;
+    font-size:13px;
+  }
+  header .contact{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:16px;
+    color:#fff2d6;
+    margin:10px 0 0;
+    font-size:13px;
+    font-weight:700;
+  }
+  header .contact span{ display:inline-flex; align-items:center; gap:5px; }
+
+  .box.best-box{
+    background:linear-gradient(90deg, #4a0f0f, #6b1616) !important;
+    animation:glowPulse 2.6s ease-in-out infinite;
+  }
+  .best-box .box-header{
+    background:transparent;
+    margin:-10px -12px 8px;
+  }
+  .best-box .box-header .star{
+    display:inline-block;
+    animation:twinkle 1.8s ease-in-out infinite;
+  }
+  .best-box .row{ border-bottom:1px dotted rgba(255,242,214,0.5); }
+  .best-box .row span:first-child{
+    color:#ffffff;
+    font-weight:700;
+    text-shadow:0 1px 2px rgba(0,0,0,0.35);
+  }
+  .best-box .row .price{
+    color:#ffd966;
+    font-weight:800;
+    text-shadow:0 1px 2px rgba(0,0,0,0.35);
+  }
+  .best-box .row{
+    transition:transform .15s, background .15s;
+  }
+  .best-box .row:hover{
+    background:rgba(255,242,214,0.12);
+    transform:translateX(3px);
+  }
+
+  @keyframes glowPulse{
+    0%, 100%{ box-shadow:0 6px 18px rgba(122,20,20,0.35), 0 0 0 0 rgba(232,191,94,0.0); }
+    50%{ box-shadow:0 6px 22px rgba(122,20,20,0.45), 0 0 0 6px rgba(232,191,94,0.18); }
+  }
+  @keyframes twinkle{
+    0%, 100%{ transform:scale(1) rotate(0deg); opacity:1; }
+    50%{ transform:scale(1.25) rotate(12deg); opacity:0.75; }
+  }
+  @keyframes fadeInUp{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  @keyframes fadeInDown{
+    from{ opacity:0; transform:translateY(-14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .nav-wrap{
+    position:sticky; top:0; z-index:5;
+    margin:10px 0 20px;
+  }
+  nav{
+    display:flex; gap:8px;
+    overflow-x:auto;
+    scroll-snap-type:x proximity;
+    -ms-overflow-style:none; scrollbar-width:none;
+    background:rgba(243,217,138,0.95);
+    backdrop-filter:blur(3px);
+    padding:10px 26px;
+    border-radius:8px;
+    box-shadow:0 2px 8px rgba(122,20,20,0.15);
+  }
+  nav::-webkit-scrollbar{ display:none; }
+  .nav-wrap::before, .nav-wrap::after{
+    content:""; position:absolute; top:0; bottom:0; width:20px; z-index:1; pointer-events:none;
+  }
+  .nav-wrap::before{ left:0; background:linear-gradient(90deg, var(--gold-1), transparent); }
+  .nav-wrap::after{ right:0; background:linear-gradient(270deg, var(--gold-1), transparent); }
+  nav a{
+    scroll-snap-align:start;
+    flex:0 0 auto;
+    color:var(--maroon);
+    text-decoration:none;
+    font-size:12.5px;
+    font-weight:700;
+    border:1px solid var(--maroon);
+    padding:6px 12px;
+    border-radius:999px;
+    white-space:nowrap;
+    transition:background .15s, color .15s;
+  }
+  nav a:hover, nav a:focus{ background:var(--maroon); color:#fff; }
+  nav a.active{ background:var(--maroon); color:#fff; box-shadow:0 0 0 2px rgba(122,20,20,0.25); }
+
+  .hero-banner{
+    position:relative;
+    border-radius:12px;
+    overflow:hidden;
+    margin:6px 0 26px;
+    box-shadow:0 6px 18px rgba(122,20,20,0.25);
+    animation:fadeInUp .7s ease .1s both;
+  }
+  .hero-banner img{
+    width:100%;
+    height:clamp(160px, 30vw, 320px);
+    object-fit:cover;
+    display:block;
+    transition:transform .5s ease;
+  }
+  .hero-banner:hover img{
+    transform:scale(1.04);
+  }
+  .hero-banner .caption{
+    position:absolute; left:0; right:0; bottom:0;
+    background:linear-gradient(0deg, rgba(58,36,16,0.85), rgba(58,36,16,0));
+    color:#fff2d6;
+    padding:26px 16px 10px;
+    font-size:13px;
+    font-weight:700;
+    text-align:center;
+    letter-spacing:0.3px;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:16px;
+  }
+
+  section.category{
+    scroll-margin-top:70px;
+    margin-bottom:22px;
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  section.category.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  .box{
+    background:rgba(255,250,235,0.55);
+    border:1px solid rgba(122,20,20,0.15);
+    border-radius:22px;
+    padding:10px 12px 4px;
+    overflow:hidden;
+  }
+  .box-header{
+    background:linear-gradient(90deg, var(--maroon), var(--maroon-bright));
+    color:#fff;
+    font-weight:700;
+    font-size:15px;
+    padding:8px 10px;
+    border-radius:16px 16px 0 0;
+    margin:-10px -12px 8px;
+  }
+  .sub-header{
+    color:var(--maroon);
+    font-weight:700;
+    font-size:12.5px;
+    margin:10px 0 4px;
+  }
+  .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-size:14px;
+    border-bottom:1px dotted var(--line);
+    padding:4px 0;
+  }
+  .row .price{ font-weight:700; color:var(--maroon); white-space:nowrap; margin-left:8px; }
+  .row{ transition:background .15s, transform .15s; border-radius:4px; }
+  .row:hover{ background:rgba(122,20,20,0.06); transform:translateX(3px); }
+
+  .dot{
+    display:inline-block; width:8px; height:8px; border-radius:50%;
+    margin-right:7px; vertical-align:middle; flex:0 0 auto;
+  }
+  .dot.veg{ background:#2e7d32; box-shadow:0 0 0 1px #1b5e20 inset; }
+  .dot.nonveg{ background:#c62828; box-shadow:0 0 0 1px #8e0000 inset; }
+  .dot.egg{ background:#f9a825; box-shadow:0 0 0 1px #b28704 inset; }
+
+  .legend{
+    display:flex; flex-wrap:wrap; gap:14px;
+    justify-content:center;
+    font-size:11.5px; color:var(--maroon);
+    margin:8px 0 0;
+  }
+  .legend span{ display:inline-flex; align-items:center; }
+
+  .top-btn{
+    position:fixed; right:16px; bottom:16px; z-index:6;
+    width:44px; height:44px; border-radius:50%;
+    background:var(--maroon); color:#fff; border:none;
+    font-size:18px; cursor:pointer;
+    box-shadow:0 4px 12px rgba(122,20,20,0.4);
+    opacity:0; visibility:hidden; transform:translateY(10px);
+    transition:opacity .2s, transform .2s, visibility .2s;
+  }
+  .top-btn.show{ opacity:1; visibility:visible; transform:translateY(0); }
+  .top-btn:hover{ background:var(--maroon-bright); }
+
+  footer{
+    position:relative;
+    text-align:center;
+    margin-top:40px;
+    padding-top:20px;
+    overflow:hidden;
+  }
+  footer .temple-bg{
+    position:absolute; right:0; bottom:-10px; width:220px; height:220px;
+    opacity:0.18; z-index:0; pointer-events:none;
+  }
+  footer p{ position:relative; z-index:1; color:var(--maroon); font-size:12px; margin:2px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>बागलुङ्ग खाजा एण्ड बर्गर हाउस</h1>
+    <p>चिया / कफी • खाजा • रोटी / पराठा / करी • खाना • मः मः • नुडल्स • चाउमिन • फ्राइड राइस • बर्गर • काटी रोल • स्न्याक्स • थुक्पा • सुप • चिसो</p>
+    <div class="contact">
+      <span>📞 9847607167</span>
+      <span>📞 01-4536937</span>
+      <span>📍 Putalisadak, Kathmandu</span>
+    </div>
+  </header>
+
+  <div class="legend">
+    <span><span class="dot veg"></span>भेज</span>
+    <span><span class="dot egg"></span>अण्डा</span>
+    <span><span class="dot nonveg"></span>नन-भेज</span>
+  </div>
+
+  <div class="nav-wrap">
+    <nav id="catNav">
+      <a href="#bestsellers" data-target="bestsellers">⭐ बेस्ट सेलिङ</a>
+      <a href="#tea" data-target="tea">चिया/कफी</a>
+      <a href="#khaja" data-target="khaja">खाजा</a>
+      <a href="#roti" data-target="roti">रोटी/करी</a>
+      <a href="#khana" data-target="khana">खाना</a>
+      <a href="#momo" data-target="momo">मः मः</a>
+      <a href="#noodles" data-target="noodles">नुडल्स</a>
+      <a href="#chowmein" data-target="chowmein">चाउमिन</a>
+      <a href="#friedrice" data-target="friedrice">फ्राइड राइस</a>
+      <a href="#burger" data-target="burger">बर्गर</a>
+      <a href="#kati" data-target="kati">काटी रोल</a>
+      <a href="#vegsnacks" data-target="vegsnacks">भेज स्न्याक्स</a>
+      <a href="#nonveg" data-target="nonveg">नन-भेज स्न्याक्स</a>
+      <a href="#thukpa" data-target="thukpa">थुक्पा</a>
+      <a href="#soup" data-target="soup">सुप</a>
+      <a href="#cold" data-target="cold">चिसो</a>
+    </nav>
+  </div>
+
+  <div class="hero-banner">
+    <img src="kalika-mandir.webp" alt="Kalika Mandir, Baglung">
+    <div class="caption">काली मन्दिर, बागलुङ्ग</div>
+  </div>
+
+  <div class="grid">
+
+    <section class="category" id="bestsellers">
+      <div class="box best-box" style="background:linear-gradient(90deg, #4a0f0f, #6b1616);">
+        <div class="box-header"><span class="star">⭐</span> हाम्रो बेस्ट सेलिङ (Our Best Selling)</div>
+        <div class="row"><span>चिकन सी-मः मः (Chicken C-Momo)</span><span class="price">रु. २००</span></div>
+        <div class="row"><span>चिकन स्टीम मः मः (Chicken Steam Momo)</span><span class="price">रु. १७०</span></div>
+        <div class="row"><span>चिकन चाउमीन (Chicken Chowmein)</span><span class="price">रु. १७०</span></div>
+        <div class="row"><span>परौठा (Paratha)</span><span class="price">रु. ६०</span></div>
+        <div class="row"><span>दूध चिया (Milk Tea)</span><span class="price">रु. ३५</span></div>
+        <div class="row"><span>कालो कफी (Black Coffee)</span><span class="price">रु. ७०</span></div>
+        <div class="row"><span>दूध चिया (Milk Tea)</span><span class="price">रु. ३५</span></div>
+        <div class="row"><span>कालो कफी (Black Coffee)</span><span class="price">रु. ७०</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="tea">
+      <div class="box">
+        <div class="box-header">१. चिया / कफी</div>
+        <div class="row"><span>दूध चिया</span><span class="price">रु. ३५</span></div>
+        <div class="row"><span>कालो चिया</span><span class="price">रु. ३०</span></div>
+        <div class="row"><span>हट लेमन</span><span class="price">रु. ३५</span></div>
+        <div class="row"><span>लेमन चिया</span><span class="price">रु. ३०</span></div>
+        <div class="row"><span>हट लेमन हनी</span><span class="price">रु. ८०</span></div>
+        <div class="row"><span>जिन्जर टी</span><span class="price">रु. ६०</span></div>
+        <div class="row"><span>दूध कफी</span><span class="price">रु. ८०</span></div>
+        <div class="row"><span>कालो कफी</span><span class="price">रु. ७०</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="khaja">
+      <div class="box">
+        <div class="box-header">२. खाजा</div>
+        <div class="row"><span>समोसा</span><span class="price">रु. ३५</span></div>
+        <div class="row"><span>समोसा चाट</span><span class="price">रु. १२०</span></div>
+        <div class="row"><span>अम्लेट</span><span class="price">रु. ४०</span></div>
+        <div class="row"><span>मसला अम्लेट</span><span class="price">रु. ४०</span></div>
+        <div class="row"><span>उमालेको अण्डा</span><span class="price">रु. ४०</span></div>
+        <div class="row"><span>ब्रेड अम्लेट</span><span class="price">रु. ७०</span></div>
+        <div class="row"><span>भेज खाजा सेट</span><span class="price">रु. १६०</span></div>
+        <div class="row"><span>अण्डा खाजा सेट</span><span class="price">रु. २२०</span></div>
+        <div class="row"><span>चिकन खाजा सेट</span><span class="price">रु. २५०</span></div>
+        <div class="row"><span>बफ खाजा सेट</span><span class="price">रु. २५०</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="roti">
+      <div class="box">
+        <div class="box-header">३. रोटी / पराठा / करी</div>
+        <div class="row"><span>रोटी प्रति पिस</span><span class="price">रु. २०</span></div>
+        <div class="row"><span>परौठा प्रति पिस</span><span class="price">रु. ६०</span></div>
+        <div class="row"><span>चिकन करी</span><span class="price">रु. १९०</span></div>
+        <div class="row"><span>सिजनल भेज</span><span class="price">रु. ७०</span></div>
+        <div class="row"><span>आलु मटर</span><span class="price">रु. ६०</span></div>
+        <div class="row"><span>अण्डा करी</span><span class="price">रु. १००</span></div>
+        <div class="row"><span>दही</span><span class="price">रु. ७०</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="khana">
+      <div class="box">
+        <div class="box-header">४. खाना</div>
+        <div class="row"><span>भेज खाना सेट</span><span class="price">रु. १८०</span></div>
+        <div class="row"><span>अम्लेट खाना सेट</span><span class="price">रु. २५०</span></div>
+        <div class="row"><span>चिकन खाना सेट</span><span class="price">रु. ३००</span></div>
+        <div class="row"><span>मटन खाना सेट</span><span class="price">रु. ४००</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="momo">
+      <div class="box">
+        <div class="box-header">५. मः मः</div>
+        <div class="sub-header">भेज मः मः</div>
+        <div class="row"><span>स्टीम</span><span class="price">रु. १२०</span></div>
+        <div class="row"><span>फ्राइड</span><span class="price">रु. १४०</span></div>
+        <div class="row"><span>सी-मः मः</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>साधेको</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>झोल</span><span class="price">रु. १४०</span></div>
+        <div class="sub-header">बफ मः मः</div>
+        <div class="row"><span>स्टीम</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>फ्राइड</span><span class="price">रु. १६०</span></div>
+        <div class="row"><span>सी-मः मः</span><span class="price">रु. १७०</span></div>
+        <div class="row"><span>साधेको</span><span class="price">रु. १७०</span></div>
+        <div class="row"><span>झोल</span><span class="price">रु. १६०</span></div>
+        <div class="sub-header">चिकन मः मः</div>
+        <div class="row"><span>स्टीम</span><span class="price">रु. १७०</span></div>
+        <div class="row"><span>फ्राइड</span><span class="price">रु. १८०</span></div>
+        <div class="row"><span>सी-मः मः</span><span class="price">रु. २००</span></div>
+        <div class="row"><span>साधेको</span><span class="price">रु. २००</span></div>
+        <div class="row"><span>झोल</span><span class="price">रु. १८०</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="noodles">
+      <div class="box">
+        <div class="box-header">६. नुडल्स</div>
+        <div class="sub-header">वाईवाई सुप</div>
+        <div class="row"><span>चिकन</span><span class="price">रु. १००</span></div>
+        <div class="row"><span>बफ</span><span class="price">रु. १००</span></div>
+        <div class="row"><span>अण्डा</span><span class="price">रु. १००</span></div>
+        <div class="row"><span>भेज</span><span class="price">रु. ७०</span></div>
+        <div class="row"><span>मिक्स</span><span class="price">रु. १५०</span></div>
+        <div class="sub-header">वाईवाई फ्राइड</div>
+        <div class="row"><span>चिकन</span><span class="price">रु. ११०</span></div>
+        <div class="row"><span>बफ</span><span class="price">रु. ११०</span></div>
+        <div class="row"><span>अण्डा</span><span class="price">रु. १००</span></div>
+        <div class="row"><span>भेज</span><span class="price">रु. ८०</span></div>
+        <div class="row"><span>मिक्स</span><span class="price">रु. १५०</span></div>
+        <div class="sub-header">करेन्ट सुप</div>
+        <div class="row"><span>चिकन</span><span class="price">रु. १३०</span></div>
+        <div class="row"><span>बफ</span><span class="price">रु. १३०</span></div>
+        <div class="row"><span>अण्डा</span><span class="price">रु. १३०</span></div>
+        <div class="row"><span>भेज</span><span class="price">रु. १००</span></div>
+        <div class="row"><span>मिक्स</span><span class="price">रु. १६०</span></div>
+        <div class="sub-header">करेन्ट फ्राइड</div>
+        <div class="row"><span>चिकन</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>बफ</span><span class="price">रु. १४०</span></div>
+        <div class="row"><span>अण्डा</span><span class="price">रु. १४०</span></div>
+        <div class="row"><span>भेज</span><span class="price">रु. १००</span></div>
+        <div class="row"><span>मिक्स</span><span class="price">रु. १८०</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="chowmein">
+      <div class="box">
+        <div class="box-header">७. चाउमिन</div>
+        <div class="row"><span>भेज चाउमीन</span><span class="price">रु. १२०</span></div>
+        <div class="row"><span>बफ चाउमीन</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>चिकन चाउमीन</span><span class="price">रु. १७०</span></div>
+        <div class="row"><span>अण्डा चाउमीन</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>मिक्स चाउमीन</span><span class="price">रु. २००</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="friedrice">
+      <div class="box">
+        <div class="box-header">८. फ्राइड राइस</div>
+        <div class="row"><span>भेज फ्राइड राइस</span><span class="price">रु. १२०</span></div>
+        <div class="row"><span>बफ फ्राइड राइस</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>चिकन फ्राइड राइस</span><span class="price">रु. १७०</span></div>
+        <div class="row"><span>अण्डा फ्राइड राइस</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>मिक्स फ्राइड राइस</span><span class="price">रु. २००</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="burger">
+      <div class="box">
+        <div class="box-header">९. बर्गर</div>
+        <div class="row"><span>भेज बर्गर</span><span class="price">रु. १६०</span></div>
+        <div class="row"><span>चिकन बर्गर</span><span class="price">रु. २००</span></div>
+        <div class="row"><span>चिकन चिज बर्गर</span><span class="price">रु. २५०</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="kati">
+      <div class="box">
+        <div class="box-header">१०. काटी रोल</div>
+        <div class="row"><span>भेज रोल</span><span class="price">रु. १२०</span></div>
+        <div class="row"><span>चिकन रोल</span><span class="price">रु. १७०</span></div>
+        <div class="row"><span>अण्डा रोल</span><span class="price">रु. १२०</span></div>
+        <div class="row"><span>डबल अण्डा रोल</span><span class="price">रु. १५०</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="vegsnacks">
+      <div class="box">
+        <div class="box-header">११. भेज स्न्याक्स</div>
+        <div class="row"><span>आलु साधेको</span><span class="price">रु. ८०</span></div>
+        <div class="row"><span>भटमास साधेको</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>पिनट साधेको</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>चाउचाउ साधेको</span><span class="price">रु. ७०</span></div>
+        <div class="row"><span>ग्रीन सलाद</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>फ्रेन्च फ्राइज</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>चिप्स चिल्ली</span><span class="price">रु. १८०</span></div>
+        <div class="row"><span>पनिर पकौडा</span><span class="price">रु. २८०</span></div>
+        <div class="row"><span>पनिर चिल्ली</span><span class="price">रु. ३२०</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="nonveg">
+      <div class="box">
+        <div class="box-header">१२. नन-भेज स्न्याक्स</div>
+        <div class="row"><span>चिकन चिल्ली</span><span class="price">रु. ३२०</span></div>
+        <div class="row"><span>फ्राइड चिकन</span><span class="price">रु. २८०</span></div>
+        <div class="row"><span>चिकन साधेको</span><span class="price">रु. ३९०</span></div>
+        <div class="row"><span>चिकन ड्रमस्टिक</span><span class="price">रु. ६०</span></div>
+        <div class="row"><span>चिकन ससेज</span><span class="price">रु. ६०</span></div>
+        <div class="row"><span>चिकन ससेज चिल्ली</span><span class="price">रु. १७०</span></div>
+        <div class="row"><span>मटन भुटन</span><span class="price">रु. २५०</span></div>
+        <div class="row"><span>बफ छोयला</span><span class="price">रु. २५०</span></div>
+        <div class="row"><span>बफ सेकुवा</span><span class="price">रु. २५०</span></div>
+        <div class="row"><span>बफ सुकुटी</span><span class="price">रु. २८०</span></div>
+        <div class="row"><span>बफ सुकुटी साधेको</span><span class="price">रु. ३००</span></div>
+        <div class="row"><span>बफ ससेज</span><span class="price">रु. ५०</span></div>
+        <div class="row"><span>बफ ससेज चिल्ली</span><span class="price">रु. १५०</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="thukpa">
+      <div class="box">
+        <div class="box-header">१३. थुक्पा</div>
+        <div class="row"><span>भेज थुक्पा</span><span class="price">रु. १२०</span></div>
+        <div class="row"><span>बफ थुक्पा</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>चिकन थुक्पा</span><span class="price">रु. १७०</span></div>
+        <div class="row"><span>अण्डा थुक्पा</span><span class="price">रु. १५०</span></div>
+        <div class="row"><span>मिक्स थुक्पा</span><span class="price">रु. २००</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="soup">
+      <div class="box">
+        <div class="box-header">१४. सुप</div>
+        <div class="row"><span>भेज सुप</span><span class="price">रु. ८०</span></div>
+        <div class="row"><span>चिकन सुप</span><span class="price">रु. १३०</span></div>
+        <div class="row"><span>मसरुम सुप</span><span class="price">रु. १००</span></div>
+        <div class="row"><span>चिकन मसरुम सुप</span><span class="price">रु. १६०</span></div>
+      </div>
+    </section>
+
+    <section class="category" id="cold">
+      <div class="box">
+        <div class="box-header">१५. चिसो</div>
+        <div class="row"><span>कोक</span><span class="price">रु. ७५</span></div>
+        <div class="row"><span>स्प्राइट</span><span class="price">रु. ७५</span></div>
+        <div class="row"><span>फ्यान्टा</span><span class="price">रु. ७५</span></div>
+        <div class="row"><span>स्लाइस</span><span class="price">रु. ७५</span></div>
+        <div class="row"><span>दिउँ</span><span class="price">रु. ७५</span></div>
+      </div>
+    </section>
+
+  </div>
+
+  <button class="top-btn" id="topBtn" aria-label="माथि जानुहोस्" type="button">↑</button>
+
+  <footer>
+    <img class="temple-bg" src="temple.svg" alt="">
+    <p><strong>बागलुङ्ग खाजा एण्ड बर्गर हाउस</strong></p>
+    <p>📞 9847607167 • 01-4536937 &nbsp;|&nbsp; 📍 Putalisadak, Kathmandu</p>
+    <p>यो मेनु समय अनुसार परिवर्तन हुन सक्छ।</p>
+  </footer>
+
+</div>
+
+<script>
+  const links = Array.from(document.querySelectorAll('#catNav a'));
+  const sections = links.map(l => document.getElementById(l.dataset.target));
+  const nav = document.getElementById('catNav');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = links.find(l => l.dataset.target === entry.target.id);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        const navRect = nav.getBoundingClientRect();
+        const linkRect = link.getBoundingClientRect();
+        if (linkRect.left < navRect.left || linkRect.right > navRect.right) {
+          const linkCenter = link.offsetLeft + link.offsetWidth / 2;
+          nav.scrollLeft = linkCenter - nav.clientWidth / 2;
+        }
+      }
+    });
+  }, { rootMargin: '-90px 0px -70% 0px', threshold: 0 });
+
+  sections.forEach(s => { if (s) observer.observe(s); });
+
+  // Fade-in-on-scroll reveal for each section
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  document.querySelectorAll('section.category').forEach(s => revealObserver.observe(s));
+
+  // Veg / egg / non-veg dots, classified from item name keywords
+  const nonVegWords = /चिकन|बफ|मटन|सुकुटी|सेकुवा|छोयला|ससेज|ड्रमस्टिक/;
+  const eggWords = /अण्डा|अम्लेट/;
+  document.querySelectorAll('.row').forEach(row => {
+    const label = row.querySelector('span:first-child');
+    if (!label) return;
+    const text = label.textContent;
+    let cls = 'veg';
+    if (nonVegWords.test(text)) cls = 'nonveg';
+    else if (eggWords.test(text)) cls = 'egg';
+    const dot = document.createElement('span');
+    dot.className = 'dot ' + cls;
+    label.prepend(dot);
+  });
+
+  // Back-to-top button
+  const topBtn = document.getElementById('topBtn');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        topBtn.classList.toggle('show', window.scrollY > 400);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+  topBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
